@@ -1,0 +1,83 @@
+apiVersion:  apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  generation: 3
+  labels:
+    app: apizarro
+    env: development
+  name: apizarro
+spec:
+  replicas: 1
+  selector:
+    deploymentConfig: apizarro
+  strategy:
+    activeDeadlineSeconds: 21600
+    recreateParams:
+      timeoutSeconds: 600
+    resources: {}
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        application: apizarro
+        deploymentConfig: apizarro
+      name: apizarro
+    spec:
+      containers:
+      - env:
+        - name: AMBIENTE
+          value: PRODUCCION
+        - name: CLUSTER_CONFIG_FILE
+          valueFrom:
+            configMapKeyRef:
+              key: CLUSTER_CONFIG_FILE
+              name: apizarro-cluster-configmap
+        image: quay-enterprise-quay-quay-enterprise.apps.ocppaz0.ar./paas/apizarro
+        imagePullPolicy: Always
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        name: apizarro
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 10
+          httpGet:
+            path: /
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources: {}
+        securityContext:
+          privileged: false
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /apizarro/clusterconfig
+          name: apizarro-cluster-secret
+          readOnly: true
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: apizarro-cluster-secret
+        secret:
+          defaultMode: 420
+          secretName: apizarro-cluster-secret
+  test: false
+  triggers:
+  - type: ConfigChange

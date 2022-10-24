@@ -1,0 +1,54 @@
+{   
+    "ocp": {
+        "endpoint": "https://api.ocp.ar:6443",
+        "token": "",
+        "prefix": "ocp1"
+    },
+    "qaaz1": {
+        "endpoint": "https://api.ocp.ar:6443",
+        "token": "",
+        "prefix": "ocp2"
+    },
+    "qaaz2": {
+        "endpoint": "https://api.ocp:6443",
+        "token": "",
+        "prefix": "ocp3"
+    },
+    "paz0": {
+        "endpoint": "https://api.ocp.ar:6443",
+        "token": "",
+        "prefix": "ocp4"
+    },
+    "ocplab": {
+        "endpoint": "https://api.ocp.ar:6443",
+        "token": "",
+        "prefix": "ocp5"
+    },
+    "paz1": {
+        "endpoint": "https://api.ocp.ar:6443",
+        "token": "",
+        "prefix": "ocp6"
+    },
+    "paz2": {
+        "endpoint": "https://api.ocp.ar:6443",
+        "token": "",
+        "prefix": "ocp7"
+    },
+    "daz1": {
+        "endpoint": "https://api.ocp.ar:6443",
+        "token": "",
+        "prefix": "ocp8"
+    },
+    "daz2": {
+        "endpoint": "https://api.ocp.ar:6443",
+        "token": "",
+        "prefix": "ocp9"
+    },
+    "ambientes": {
+        "desa": ["ocp"],
+        "qa": ["ocp2", "ocp3"],
+        "paas": ["ocp4", "ocp5"],
+        "prod": ["ocp6", "ocp7"],
+        "dmz": ["ocp8", "ocp9"]
+    }
+}
