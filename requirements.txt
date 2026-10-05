@@ -1,0 +1,13 @@
+# API management
+flask~=1.1.2
+py-healthcheck~=1.10.1
+openshift==0.11.2
+jinja2==2.11.2
+kubernetes==11.0.0
+Flask==1.1.2
+Flask-Cors==3.0.8
+flask-oidc==1.4.0 
+flask-restplus==0.13.0
+Flask-RESTful==0.3.8
+Werkzeug==0.16.1
+boto3==1.17.49
